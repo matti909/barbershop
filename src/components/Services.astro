@@ -1,0 +1,138 @@
+---
+import { Clock, Scissors, Zap } from 'lucide-react';
+
+const services = [
+  {
+    id: 1,
+    name: 'Solo Barba',
+    description: 'Servicio completo de arreglo y cuidado de barba. Incluye recorte, perfilado, aceites hidratantes y styling profesional para lucir impecable.',
+    duration: 30,
+    price: 15,
+    features: ['Recorte profesional', 'Perfilado preciso', 'Aceites hidratantes', 'Styling personalizado'],
+    image: 'https://images.pexels.com/photos/1570807/pexels-photo-1570807.jpeg',
+    icon: Zap
+  },
+  {
+    id: 2,
+    name: 'Solo Corte',
+    description: 'Corte de cabello masculino personalizado según tu estilo. Incluye lavado, corte técnico y acabado profesional con productos premium.',
+    duration: 45,
+    price: 20,
+    features: ['Consulta de estilo', 'Lavado premium', 'Corte técnico', 'Acabado profesional'],
+    image: 'https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg',
+    icon: Scissors
+  },
+  {
+    id: 3,
+    name: 'Barba y Corte',
+    description: 'La experiencia completa del hombre moderno. Combina corte de cabello personalizado con cuidado integral de barba.',
+    duration: 75,
+    price: 32,
+    features: ['Corte personalizado', 'Arreglo de barba', 'Tratamiento completo', 'Experiencia premium'],
+    image: 'https://images.pexels.com/photos/1570807/pexels-photo-1570807.jpeg',
+    icon: Scissors,
+    popular: true
+  }
+];
+---
+
+<section id="services" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">
+        Nuestros Servicios
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Ofrecemos servicios profesionales de barbería con técnicas clásicas y modernas,
+        utilizando los mejores productos para garantizar resultados excepcionales.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <div
+          class={`relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${
+            service.popular ? 'ring-2 ring-amber-500' : ''
+          }`}
+        >
+          <!-- Popular Badge -->
+          {service.popular && (
+            <div class="absolute top-4 right-4 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full z-10">
+              MÁS POPULAR
+            </div>
+          )}
+
+          <!-- Service Image -->
+          <div class="relative h-48 overflow-hidden">
+            <img
+              src={service.image}
+              alt={service.name}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="absolute top-4 left-4">
+              <service.icon className="h-8 w-8 text-amber-500" />
+            </div>
+          </div>
+
+          <!-- Service Content -->
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-2xl font-bold text-gray-900">{service.name}</h3>
+              <div class="text-right">
+                <div class="text-2xl font-bold text-amber-500">${service.price}</div>
+              </div>
+            </div>
+
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              {service.description}
+            </p>
+
+            <!-- Duration -->
+            <div class="flex items-center space-x-2 mb-4 text-gray-500">
+              <Clock className="h-4 w-4" />
+              <span class="text-sm">{service.duration} minutos</span>
+            </div>
+
+            <!-- Features -->
+            <div class="space-y-2 mb-6">
+              {service.features.map((feature) => (
+                <div class="flex items-center space-x-2">
+                  <div class="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- Book Button -->
+            <a
+              href="#booking"
+              class={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 block text-center hover:scale-105 ${
+                service.popular
+                  ? 'bg-amber-500 hover:bg-amber-600 text-black'
+                  : 'bg-gray-900 hover:bg-gray-800 text-white'
+              }`}
+            >
+              Reservar Ahora
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-12">
+      <p class="text-gray-600 mb-4">
+        ¿No estás seguro qué servicio elegir? Nuestro experto te asesora.
+      </p>
+      <a
+        href="#contact"
+        class="inline-block bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
+      >
+        Consultar con Experto
+      </a>
+    </div>
+  </div>
+</section>
